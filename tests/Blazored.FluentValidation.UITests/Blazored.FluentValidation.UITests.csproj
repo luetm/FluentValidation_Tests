@@ -9,6 +9,7 @@
         <IsTestProject>true</IsTestProject>
         <LangVersion>default</LangVersion>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <RootNamespace>Blazored.FluentValidation.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
