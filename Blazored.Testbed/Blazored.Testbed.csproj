@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\samples\Shared\SharedModels\SharedModels.csproj"/>
+        <ProjectReference Include="..\src\Blazored.FluentValidation\Blazored.FluentValidation.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="Pages\Index.razor"/>
+        <AdditionalFiles Include="Pages\_Host.cshtml"/>
+        <AdditionalFiles Include="Shared\MainLayout.razor"/>
+        <AdditionalFiles Include="Shared\NavMenu.razor"/>
+    </ItemGroup>
+
+</Project>
