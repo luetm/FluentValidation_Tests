@@ -1,0 +1,19 @@
+﻿<EditForm Model="@_person" OnValidSubmit="@SubmitValidForm" OnInvalidSubmit="SubmitInvalidForm">
+    <FluentValidationValidator @ref="_fluentValidationValidator"   />
+    <ValidationSummary />
+
+    <p>
+        <label>First Name: </label>
+        <InputText name="@nameof(_person.FirstName)" @bind-Value="@_person.FirstName" />
+        <ValidationMessage For="@(() => _person.FirstName)" />
+    </p>
+
+    <p>
+        <label>Last Name: </label>
+        <InputText name="@nameof(_person.LastName)" @bind-Value="@_person.LastName" />
+        <ValidationMessage For="@(() => _person.LastName)" />
+    </p>
+    
+    <button type="submit">Submit</button>
+    <div id="result">@_result</div>
+</EditForm>
