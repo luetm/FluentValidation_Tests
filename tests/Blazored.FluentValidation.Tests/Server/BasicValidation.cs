@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.Playwright;
 using SharedModels;
 
 namespace Blazored.FluentValidation.Tests.Server;
@@ -26,6 +27,37 @@ public class BasicValidation
         await page.GotoAsync("/");
         
         // Act
+        await FillPerson(page, person);
+        await page.ClickAsync("button[type=submit]");
+        
+        // Assert
+        (await page.Locator($"input[name={nameof(person.FirstName)}]").GetAttributeAsync("class")).Should().ContainAll("modified", "valid");
+    }
+
+    [Fact]
+    public async Task Enter_InvalidFirstNameEntered_ValidationErrorForFirstName()
+    {
+        // Arrange
+        var fixture = new Fixture();
+        var person = fixture.ValidPerson();
+        person.FirstName = " ";
+        var page = await _testContext.Browser.NewPageAsync(new()
+        {
+            BaseURL = SharedTestContext.AppUrl
+        });
+        await page.GotoAsync("/");
+        
+        // Act
+        await FillPerson(page, person);
+        await page.ClickAsync("button[type=submit]");
+        
+        // Assert
+        (await page.Locator("ul[class=validation-errors]").InnerTextAsync()).Should().Contain("You must enter your first name");
+        (await page.Locator("div[class=validation-message]").InnerTextAsync()).Should().Contain("You must enter your first name");
+    }
+    
+    private async Task FillPerson(IPage page, Person person)
+    {
         await page.FillAsync($"input[name={nameof(person.FirstName)}]", person.FirstName!);
         await page.FillAsync($"input[name={nameof(person.LastName)}]", person.LastName!);
         await page.FillAsync($"input[name={nameof(person.Age)}]", person.Age.ToString()!);
@@ -34,10 +66,6 @@ public class BasicValidation
         await page.FillAsync($"input[name={nameof(person.Address.Town)}]", person.Address.Town!);
         await page.FillAsync($"input[name={nameof(person.Address.Postcode)}]", person.Address.Postcode!);
         await page.FillAsync($"input[name={nameof(person.Address.County)}]", person.Address.County!);
-        await page.ClickAsync("button[type=submit]");
-        
-        // Assert
-        (await page.Locator($"input[name={nameof(person.FirstName)}]").GetAttributeAsync("class")).Should().ContainAll("modified", "valid");
     }
 
 
