@@ -1,0 +1,11 @@
+﻿services:
+  test-app:
+    build: 
+      context: ../..
+      dockerfile: samples/BlazorServer/Dockerfile
+    ports:
+      - "7780:443"
+      - "7779:80"
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_ENVIRONMENT=Production

@@ -10,13 +10,13 @@
 
     <p>
         <label>First Name: </label>
-        <InputText @bind-Value="@_person.FirstName" />
+        <InputText name="@nameof(_person.FirstName)" @bind-Value="@_person.FirstName" />
         <ValidationMessage For="@(() => _person.FirstName)" />
     </p>
 
     <p>
         <label>Last Name: </label>
-        <InputText @bind-Value="@_person.LastName" />
+        <InputText name="@nameof(_person.LastName)" @bind-Value="@_person.LastName" />
         <ValidationMessage For="@(() => _person.LastName)" />
     </p>
 
@@ -24,42 +24,42 @@
 
     <p>
         <label>Age: </label>
-        <InputNumber @bind-Value="@_person.Age" />
+        <InputNumber name="@nameof(_person.Age)" @bind-Value="@_person.Age" />
         <ValidationMessage For="@(() => _person.Age)" />
     </p>
 
     <p>
         <label>Email Address: </label>
-        <InputText @bind-Value="@_person.EmailAddress" />
+        <InputText name="@nameof(_person.EmailAddress)" @bind-Value="@_person.EmailAddress" />
         <ValidationMessage For="@(() => _person.EmailAddress)" />
     </p>
 
     <p>
         <label>Address: Line 1: </label>
-        <InputText @bind-Value="@_person.Address.Line1" />
+        <InputText name="@nameof(_person.Address.Line1)" @bind-Value="@_person.Address.Line1" />
         <ValidationMessage For="@(() => _person.Address.Line1)" />
     </p>
 
     <p>
         <label>Address: Line 2: </label>
-        <InputText @bind-Value="@_person.Address.Line2" />
+        <InputText name="@nameof(_person.Address.Line2)" @bind-Value="@_person.Address.Line2" />
     </p>
 
     <p>
         <label>Address: Town: </label>
-        <InputText @bind-Value="@_person.Address.Town" />
+        <InputText name="@nameof(_person.Address.Town)" @bind-Value="@_person.Address.Town" />
         <ValidationMessage For="@(() => _person.Address.Town)" />
     </p>
 
     <p>
         <label>Address: County: </label>
-        <InputText @bind-Value="@_person.Address.County" />
+        <InputText name="@nameof(_person.Address.County)" @bind-Value="@_person.Address.County" />
         <ValidationMessage For="@(() => _person.Address.County)" />
     </p>
 
     <p>
         <label>Address: Postcode: </label>
-        <InputText @bind-Value="@_person.Address.Postcode" />
+        <InputText name="@nameof(_person.Address.Postcode)" @bind-Value="@_person.Address.Postcode" />
         <ValidationMessage For="@(() => _person.Address.Postcode)" />
     </p>
 
